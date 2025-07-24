@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lời nhắn</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .container {
+                border: 1px solid #ccc;
+                padding: 20px;
+                border-radius: 8px;
+                max-width: 500px;
+                margin: 20px auto;
+                background-color: #f9f9f9;
+            }
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: bold;
+            }
+            input[type="text"],
+            textarea {
+                width: calc(100% - 20px); /* Trừ padding */
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+            button {
+                background-color: #007bff;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            #outputDisplay {
+                margin-top: 25px;
+                padding: 15px;
+                border: 1px dashed #007bff;
+                background-color: #eaf6ff;
+                border-radius: 6px;
+                min-height: 50px; /* Đảm bảo có không gian hiển thị */
+            }
+            #outputDisplay strong {
+                color: #0056b3;
+            }
+
+            .button2 {
+                margin-top: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Bước kế tiếp</h2>
+            <h2>Nhập thông tin của bạn</h2>
+
+            <div>
+                <label for="userName">Tên của bạn:</label>
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="Ví dụ: Nguyễn Văn A"
+                />
+            </div>
+
+            <div>
+                <label for="userMessage">Lời nhắn của bạn:</label>
+                <textarea
+                    id="userMessage"
+                    rows="4"
+                    placeholder="Nhập lời nhắn mà bạn muốn gửi cho Long"
+                ></textarea>
+            </div>
+
+            <button class="button" onclick="displayUserInfo()">Xong</button>
+
+            <h3>Lời nhắn Long muốn nói với bạn:</h3>
+            <div id="outputDisplay">Không có thông tin từ bạn!</div>
+            <a href="index4.html"
+                ><button class="button button2">Tiếp theo</button></a
+            >
+        </div>
+
+        <script>
+            // Bước 1: Lấy các phần tử HTML cần thiết bằng ID
+            const userNameInput = document.getElementById("userName");
+            const userMessageTextarea = document.getElementById("userMessage");
+            const outputDisplay = document.getElementById("outputDisplay");
+
+            // Bước 2: Định nghĩa hàm sẽ được gọi khi nút được nhấn
+            function displayUserInfo() {
+                // Bước 3: Lấy giá trị từ các trường nhập liệu
+                const name = userNameInput.value;
+                const message = userMessageTextarea.value;
+
+                // Kiểm tra xem người dùng có nhập gì không
+                if (name.trim() === "" || message.trim() === "") {
+                    outputDisplay.innerHTML =
+                        "Vui lòng nhập đủ thông tin vào các ô trống.";
+                    outputDisplay.style.color = "red"; // Thay đổi màu chữ thành đỏ để cảnh báo
+                    return; // Dừng hàm nếu không có thông tin
+                } else {
+                    outputDisplay.style.color = "#0056b3"; // Đặt lại màu chữ mặc định nếu có thông tin
+                }
+
+                // Bước 4: Xuất thông tin ra màn hình HTML
+                outputDisplay.innerHTML = `
+        Hello <strong>${name || "Không có"}</strong><br>
+        <strong>Cảm ơn vì đã gửi lời nhắn cho tôi</strong><br>
+        <strong>${name || "Không có"}</strong> thật là GAY!
+    `;
+
+                // Bạn cũng có thể xuất ra console của trình duyệt để kiểm tra (F12 để mở console)
+                console.log("Thông tin người dùng:");
+                console.log("Tên:", name);
+                console.log("Lời nhắn:", message);
+
+                // Tùy chọn: Xóa nội dung trong trường nhập liệu sau khi xuất
+                // userNameInput.value = '';
+                // userMessageTextarea.value = '';
+            }
+
+            // Lưu ý: Trong HTML, nút đã có onclick="displayUserInfo()",
+            // nên không cần addEventListener ở đây.
+            // Nếu bạn muốn dùng addEventListener thì bỏ onclick trong HTML và làm thế này:
+            /*
+const displayButton = document.querySelector('button');
+displayButton.addEventListener('click', displayUserInfo);
+*/
+        </script>
+    </body>
+</html>
