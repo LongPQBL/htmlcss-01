@@ -115,6 +115,17 @@
                     outputDisplay.style.color = "#0056b3"; // Đặt lại màu chữ mặc định nếu có thông tin
                 }
 
+                if (
+                    name.trim().toLowerCase().includes("long") ||
+                    message.trim() === ""
+                ) {
+                    outputDisplay.innerHTML = "Bạn không thể nhập tên của Long";
+                    outputDisplay.style.color = "red"; // Thay đổi màu chữ thành đỏ để cảnh báo
+                    return; // Dừng hàm nếu không có thông tin
+                } else {
+                    outputDisplay.style.color = "#0056b3"; // Đặt lại màu chữ mặc định nếu có thông tin
+                }
+
                 // Bước 4: Xuất thông tin ra màn hình HTML
                 outputDisplay.innerHTML = `
         Hello <strong>${name || "Không có"}</strong><br>
